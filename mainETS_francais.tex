@@ -1,0 +1,239 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% DECLARATION DE LA CLASSE DU DOCUMENT
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Utiliser le format suivant:
+% \documentclass[type de papier% ("letterpaper" demandé)
+% , simple ou recto verso% ("oneside" ou "twoside")%
+% , taille de la police% ("12pt" demandé)%
+% , type de document% ("these", "memoire", "memoireprojet" ou "thesepararticles")%
+% , langue du document ("francais" ou "english")%
+% , options supplémentaires% ("creativecommons" pour préciser que le document est soumis à la licence créative commomns, "hyperref", "withAlgo2e" pour utiliser le package algorithm2e avec la mise en page correcte de la liste des algorithmes)
+%]{thETS}
+
+%% Exemple pour une thèse creative commons, utilisant le package hyperref
+\documentclass[letterpaper%
+,oneside%
+,12pt%
+,report%
+,french
+,hyperref
+,withAlgo2e%
+,final
+]{thETS}
+
+\usepackage{filecontents,pgfplots}
+\usepackage{siunitx}
+\pgfplotsset{compat=1.15}
+\usepackage[export]{adjustbox}
+\usepackage{multirow}
+\usepackage{usebib}
+\usepackage{pdflscape}
+\usepackage{rotating}
+\usepackage{enumitem}
+\usepackage{hyperref}
+
+% \usepackage[obeyFinal]{todonotes}
+
+\newbibfield{quote}
+% \bibinput{logiciel}
+\bibinput{Robots}
+
+
+\newcommand{\footcite}[1]{\footnote{\cite{#1}}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% IMPORTANT: NOTES D'IMPRESSION POUR RESPECTER LES MARGES
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%  Si vous créez un fichier PDF directement avec PDFLatex, et vous utilisez Acrobat Reader
+%% pour faire l'impression, n'oubliez-pas de changer l'option <<Mise à l'échelle>> pour la valeur
+%% <<Aucune>> pour que les marges soient imprimés correctement.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% DECLARATION D'UNE LISTE DE RÉFÉRENCES SUPPLÉMENTAIRE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Exemple de création d'une liste de références en plus de la liste bibliographique
+% "refs" est utilisé en suffixe des commandes de citation de de bibliogtraphie
+%\newcites{refs}{LISTE DE RÉFÉRENCES}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% DECLARATION DES INFORMATIONS DE LA PAGE TITRE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\title{Conception et implémentation du contrôle pour le manipulateur d'une plateforme robotique mobile}
+
+%% Chapitre 1-3
+\author{Alexandre FRANCOEUR}
+\coauthors{}
+% \coauthors{Marc-Olivier BÉLISLE\\Charles GIGUÈRE\\Ludovic VANASSE}
+
+%\reporttype{Chapitre 1: Description de la problématique}
+% \reporttype{Chapitre 2: Cadre d'analyse}
+\teacher{Vincent DUCHAINE}
+
+\reporttype{Rapport technique élaboré dans le cadre du cours projets spéciaux GPA791}
+
+
+\datedepot{7 AVRIL 2020}
+%\datesoutenance{``Date de soutenance''}
+
+%\directeur{M.}{Prénom Nom}{Nom du département et institution}
+
+%\directeur{Mme.}{Prénom Nom}{Nom du département et institution}
+
+%\codirecteur{Mme.}{Prénom Nom}{département et institution}
+
+%\codirecteurB{M.}{Prénom Nom}{département et institution}
+
+%\president{M.}{Prénom Nom}{département et institution}
+
+%\examinexterne{M.}{Prénom Nom}{département et institution}{}
+
+%\jury{Mme.}{Prénom Nom}{département et institution}{}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% CHANGEMENT DE L'INTITULÉ DU DIPLOME
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Il est possible de modifier l'intitulé du diplome en redéfinissant la commande
+% \lediplome, comme dans l'exemple suivant:
+%\renewcommand{\lediplome}{DE LA MAÎTRISE\\AVEC MEMOIRE EN GÉNIE ÉLECTRIQUE\\M. Sc. A.}
+
+%\listfiles
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% DÉBUT DU DOCUMENT
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+\pagenumbering{Roman}
+
+%%- Affichage de la page titre -%%
+\maketitle
+
+% %%- Affichage de la présentatiton du jury -%%
+% \presentjury
+
+% %%%- Avant propos -%%
+% \begin{avantpropos}
+
+% \lipsum[1] % Texte de remplissage pour donner un exemple de la mise en page
+
+% \end{avantpropos}
+
+
+
+% %%- Remerciements -%%
+% \begin{remerciements}
+% \lipsum[1] % Texte de remplissage pour donner un exemple de la mise en page
+% % \input{Texte/remerciements.tex}
+% \end{remerciements}
+
+
+% %%- Sommaire -%%
+
+% \begin{sommaire}{Robotique, Contrôle, ROS, Cinématique inverse, USAR}
+% \input{Texte/resume.tex}
+% \end{sommaire}
+
+
+% %%- Abstract -%%
+% \begin{abstract}{Titre en anglais}{keyword1, keyword2}
+
+% \lipsum[1] % Texte de remplissage pour donner un exemple de la mise en page
+
+% \end{abstract}
+
+%\listoftodos
+%%- Affichage de la table des matières -%%
+\tableofcontents
+
+
+%%- Affichage de la liste des tableaux -%%
+% \listoftables
+
+%%- Affichage de la liste des Figures -%%
+\listoffigures
+
+%%- Déclaration et affichage de la liste des abbréviations -%%
+\input{liste_abbr.tex}
+
+% %%- Déclaration et affichage de la liste des symboles -%%
+% \begin{listofsymbols}[3cm]
+% \item [a] Première lettre de l'alphabet
+% \item [A] Première lettre de l'alphabet en majuscule
+% \end{listofsymbols}
+
+
+% \cleardoublepage
+
+\pagenumbering{arabic}
+
+% Marginpar à gauche du document
+%\reversemarginpar
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% EXEMPLE DE CORPS DE THÈSE OU MÉMOIRE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\input{Texte/intro.tex}
+%\setcounter{chapter}{1}
+\input{Texte/Chap_Context.tex}
+\input{Texte/Chap_Implementation.tex}
+\input{Texte/Chap_Resultat.tex}
+
+%- Conclusion -%%
+\input{Texte/conclusion.tex}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Annexe
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\appendix
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% BIBLIOGRAPHIE ET RÉFÉRENCES
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%- Bibliographie -%%
+\newpage
+%Interligne sinmple pour la bibliographie
+\begin{spacing}{1}
+    % \nocite{*} % Utiliser la commande nocite pour afficher des références qui n'ont pas été citées dans le document. '*' permet de toutes les afficher.
+	\bibliographystyle{bibETS} % Utilisation du style bibliographique de l'ETS
+	\addcontentsline{toc}{chapter}{BIBLIOGRAPHIE} % Ajout de la bibliographie à la table des matières
+
+% 	\bibliography{logiciel.bib} % Liste des fichiers bib de bibliographie, biblio.bib est un exemple
+    \bibliography{Robots.bib}
+\end{spacing}
+
+%%- Références, exemple des références "refs" --%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% IMPORTANT: NOTES POUR COMPILER ET AFFICHER LES RÉFÉRENCES ADDITIONNELLES (remplacer "refs" par le suffixe choisi)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Suivre les trois étapes:
+%   1. Compiler le document une fois pour renseigner les références utilisées dans refs.aux
+%   2. Lancer la compilation des références
+% 		- Sous Linux: Utilser la commande "bibtex refs" dans le dossier du document
+%		- Sous MacOSX (distribution MacTex): Utilser la commande "/usr/texbin/bibtex refs" dans le dossier du document
+%		- Sous Windows: Éditer le script "update_refs.bat" pour renseigner le bon suffixe, et le lancer
+%   3. Recompiler le document deux fois
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \newpage
+% % Le fonctionnement est similaire, en rajoutant le suffixe choisi "refs" à la fin de chaque commande de bibliographie
+% \begin{spacing}{1}
+% 	%\nociterefs{*}
+% 	\bibliographystylerefs{bibETS}
+% 	\addcontentsline{toc}{chapter}{LISTE DE RÉFÉRENCES}
+
+% 	\bibliographyrefs{refs} % Liste des fichiers bib de référence, refs.bib est un exemple
+
+% \end{spacing}
+
+% \chapter{Sources des références bibliographiques}
+% \input{Texte/sourcesRef.tex}
+
+
+% \input{Texte/carte_concept.tex}
+\input{Texte/inspiration_robots.tex}
+\end{document}
